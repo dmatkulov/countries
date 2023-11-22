@@ -14,5 +14,11 @@ export interface ApiState {
   nativeName: string;
   capital: string;
   population: number;
-  borders: Record<number, string>;
+  borders: ApiBorder[];
+  flags: Record<string, string>;
+}
+
+export interface ApiBorder {
+  name: string;
+  alpha3Code: string;
 }

@@ -1,14 +1,14 @@
-import CountriesList from '../components/Countries/CountriesList';
 import CountryInfo from '../components/Countries/CountryInfo';
 import {useCallback, useEffect, useState} from 'react';
 import {ApiCountries, Countries} from '../types';
 import axios from 'axios';
+import CountryName from '../components/Countries/CountryName';
 
-const BASE_URL = 'https://restcountries.com/v2/';
-const COUNTRY_URL = BASE_URL + 'all?fields=alpha3Code,name';
+const COUNTRY_URL = 'all?fields=alpha3Code,name';
 
 function App() {
   const [countries, setCountries] = useState<Countries[]>([]);
+  const [selectedCode, setSelectedCode] = useState<string | null>(null);
   
   const fetchData = useCallback(async () => {
     try {
@@ -20,7 +20,6 @@ function App() {
         alpha3Code: country.alpha3Code,
       };
     });
-    
     const countries = await Promise.all(promises);
     setCountries(countries);
     } finally {
@@ -33,16 +32,22 @@ function App() {
   }, [fetchData]);
   
   return (
-    <>
+    <div style={{display: 'flex'}}>
     <div>
-      <CountriesList
-        countries={countries}
-      />
+      {countries.map((country) => (
+        <CountryName
+          key={country.alpha3Code}
+          name={country.name}
+          onNameClick={() => setSelectedCode(country.alpha3Code)}
+        />
+      ))}
     </div>
       <div>
-        <CountryInfo/>
+        <CountryInfo
+          alpha3Code={selectedCode}
+        />
       </div>
-    </>
+    </div>
   );
 }
 
