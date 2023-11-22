@@ -21,7 +21,7 @@ const CountryInfo: React.FC<Props> = ({alpha3Code}) => {
           return {
             name: borderResponse.data.name,
             alpha3Code: borderResponse.data.alpha3Code,
-            flags: borderResponse.data.flags
+            flag: borderResponse.data.flag,
           };
         });
         const newBorder = await Promise.all(promises);
@@ -70,7 +70,7 @@ const CountryInfo: React.FC<Props> = ({alpha3Code}) => {
           <div>
             <img
               className="w-40 border"
-              src={country.flags.svg}
+              src={country.flag}
               alt={country.name}
             />
           </div>

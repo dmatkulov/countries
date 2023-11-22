@@ -15,11 +15,11 @@ export interface ApiState {
   capital: string;
   population: number;
   borders: ApiBorder[];
-  flags: Record<string, string>;
+  flag: string;
 }
 
 export interface ApiBorder {
   name: string;
   alpha3Code: string;
-  flags: Record<string, string>
+  flag: string;
 }

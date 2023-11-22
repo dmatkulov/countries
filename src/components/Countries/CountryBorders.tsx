@@ -14,7 +14,7 @@ const CountryBorders: React.FC<Props> = ({borders}) => {
           key={border.alpha3Code}
         >
           <div className="basis-8 me-2">
-            <img src={border.flags.svg} alt={border.name}/>
+            <img src={border.flag} alt={border.name}/>
           </div>
           {border.name}
         </div>
