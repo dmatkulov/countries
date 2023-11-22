@@ -4,15 +4,23 @@ interface Props {
   name: string;
   onNameClick: React.MouseEventHandler;
 }
+
 const CountryName: React.FC<Props> = React.memo(function CountryName({name, onNameClick}) {
   return (
-    <div>
-      <p onClick={onNameClick}>
-        {name}
-      </p>
-    </div>
+    <p
+      className="
+        px-3
+        py-2
+        mb-1
+        hover:bg-amber-500
+        rounded-full
+        hover:text-white
+        cursor-pointer"
+      onClick={onNameClick}>
+      {name}
+    </p>
   );
-},(prevProps, nextProps) => {
+}, (prevProps, nextProps) => {
   return prevProps.name === nextProps.name;
 });
 
